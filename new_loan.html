@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Выдать книгу{% endblock %}
+{% block content %}
+<h2>Выдать экземпляр</h2>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="post" action="/loans/new" class="card" style="max-width:360px">
+  <p><label>Читатель №<br><input name="reader_id" type="number" required></label></p>
+  <p><label>Экземпляр №<br><input name="copy_id" type="number" required></label></p>
+  <button>Выдать</button>
+</form>
+{% endblock %}

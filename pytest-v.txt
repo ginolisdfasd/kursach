@@ -1,0 +1,22 @@
+tests/test_api.py::test_login_with_wrong_password_is_401 PASSED
+tests/test_api.py::test_endpoints_require_authorization PASSED
+tests/test_api.py::test_loans_list_returns_requested_page PASSED
+tests/test_api.py::test_loans_filter_overdue_returns_only_overdue PASSED
+tests/test_api.py::test_loans_list_rejects_bad_parameters PASSED
+tests/test_api.py::test_loan_card_has_related_entities PASSED
+tests/test_api.py::test_reader_card PASSED
+tests/test_api.py::test_books_list_shows_free_copies PASSED
+tests/test_api.py::test_summary_fields PASSED
+tests/test_api.py::test_issue_and_return_cycle PASSED
+tests/test_api.py::test_issue_refused_for_reader_with_overdue PASSED
+tests/test_api.py::test_issue_unknown_reader_is_404_and_bad_body_is_422 PASSED
+tests/test_api.py::test_loans_page_shows_copy_inventory_number PASSED
+tests/test_rules.py::test_due_date_is_fourteen_days_after_issue PASSED
+tests/test_rules.py::test_return_in_time_has_no_overdue_and_no_fine PASSED
+tests/test_rules.py::test_late_return_counts_overdue_and_fine PASSED
+tests/test_rules.py::test_not_returned_book_is_overdue_relative_to_today PASSED
+tests/test_rules.py::test_busy_copy_is_not_issued PASSED
+tests/test_rules.py::test_reader_with_overdue_loans_is_refused PASSED
+tests/test_rules.py::test_free_copy_is_issued_to_reader_without_debts PASSED
+tests/test_rules.py::test_closed_loan_cannot_be_returned_twice PASSED
+============================== 21 passed in 0.31s ==============================

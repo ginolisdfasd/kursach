@@ -1,0 +1,9 @@
+ calls | total_ms | mean_ms |                              query                               
+-------+----------+---------+------------------------------------------------------------------
+    30 |     57.5 |   1.915 | SELECT * FROM loans WHERE reader_id = $1 ORDER BY issued_at DESC
+   900 |      7.0 |   0.008 | SELECT * FROM copies WHERE id = $1
+   900 |      6.7 |   0.007 | SELECT * FROM books WHERE id = $1
+   930 |      6.5 |   0.007 | SELECT * FROM readers WHERE id = $1
+    30 |      0.3 |   0.012 | SELECT * FROM app_users WHERE username = $1
+(5 rows)
+

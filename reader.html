@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}{{ reader.full_name }}{% endblock %}
+{% block content %}
+<h2>{{ reader.full_name }}</h2>
+<div class="tiles">
+  <div class="tile">Билет<b>{{ reader.card_no }}</b></div>
+  <div class="tile">На руках<b>{{ reader.on_hands }}</b></div>
+  <div class="tile">Просрочено<b class="overdue">{{ reader.overdue }}</b></div>
+  <div class="tile">Штрафы, ₽<b>{{ reader.fine_total }}</b></div>
+</div>
+<table><tr><th>Выдача</th><th>Книга</th><th>Выдана</th><th>Срок</th><th>Возврат</th><th>Штраф, ₽</th></tr>
+{% for l in reader.loans %}
+<tr class="{{ l.status }}"><td><a href="/loans/{{ l.id }}">{{ l.id }}</a></td><td>{{ l.book.title }}</td><td>{{ l.issued_at }}</td><td>{{ l.due_at }}</td><td>{{ l.returned_at or "—" }}</td><td>{{ l.fine }}</td></tr>
+{% endfor %}</table>
+{% endblock %}

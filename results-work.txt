@@ -1,0 +1,12 @@
+операция                                              p50      p95      max  в БД p50  запр.
+GET /api/loans?page=1&size=20                       14.41    15.30    15.73     12.52     63
+GET /api/loans?status=overdue&page=1&size=20        14.77    15.15    15.85     12.92     63
+GET /api/loans/100                                   3.61     3.80     3.83      2.78      6
+GET /api/readers/10                                 16.53    17.97    19.12     14.14     93
+GET /api/books?page=1&size=20                      150.75   158.82   175.02    144.83     86
+GET /api/books?q=маяк&page=1&size=20               149.97   175.14   218.00    145.59     81
+GET /api/summary                                    70.80    79.80    82.47     50.43      4
+POST /api/loans                                      6.89     7.16     7.21      5.88     10
+POST /api/loans/{id}/return                          1.91     2.07     2.17      1.04      7
+POST /api/login                                      0.93     1.12     1.14      0.16      1
+повторов 30, прогрев 5, учётная запись librarian, записано выдач 35

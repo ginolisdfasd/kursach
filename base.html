@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}Библиотека{% endblock %} · {{ prefix }}</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Arial, sans-serif; margin: 0; color: #1d2433; background: #f6f7f9; }
+  header { background: #24324a; color: #fff; padding: 10px 24px; display: flex; gap: 20px; align-items: center; }
+  header a { color: #dfe7f5; text-decoration: none; }
+  header .who { margin-left: auto; font-size: 13px; color: #b9c4d8; }
+  main { padding: 20px 24px; max-width: 1100px; }
+  table { border-collapse: collapse; width: 100%; background: #fff; }
+  th, td { border: 1px solid #d8dde6; padding: 6px 8px; font-size: 14px; text-align: left; }
+  th { background: #eef1f6; }
+  .overdue { color: #b3261e; font-weight: 600; }
+  .returned { color: #667085; }
+  .card { background: #fff; border: 1px solid #d8dde6; padding: 14px 18px; margin-bottom: 16px; }
+  .tiles { display: flex; gap: 14px; margin-bottom: 18px; }
+  .tile { background: #fff; border: 1px solid #d8dde6; padding: 12px 16px; min-width: 150px; }
+  .tile b { display: block; font-size: 26px; }
+  .pager a, .pager span { margin-right: 6px; }
+  .error { color: #b3261e; }
+  form.inline { display: inline; }
+</style>
+</head>
+<body>
+<header>
+  <b>Библиотека</b>
+  {% if user %}
+  <a href="/loans">Выдачи</a><a href="/loans/new">Выдать</a><a href="/books">Книги</a><a href="/summary">Сводка</a>
+  <span class="who">{{ user.full_name }} ({{ user.username }}) · стенд {{ prefix }} · <a href="/logout">выйти</a></span>
+  {% else %}<span class="who">стенд {{ prefix }}</span>{% endif %}
+</header>
+<main>{% block content %}{% endblock %}</main>
+</body>
+</html>

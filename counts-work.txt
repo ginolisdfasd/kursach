@@ -1,0 +1,9 @@
+     t     | count 
+-----------+-------
+ readers   |  3000
+ books     | 10000
+ copies    | 30000
+ loans     | 74824
+ app_users |     2
+(5 rows)
+

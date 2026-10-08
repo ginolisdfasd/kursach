@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Вход{% endblock %}
+{% block content %}
+<h2>Вход</h2>
+{% if error %}<p class="error">Неверное имя или пароль</p>{% endif %}
+<form method="post" action="/login" class="card" style="max-width:320px">
+  <p><label>Имя<br><input name="username" required></label></p>
+  <p><label>Пароль<br><input name="password" type="password" required></label></p>
+  <button>Войти</button>
+</form>
+{% endblock %}

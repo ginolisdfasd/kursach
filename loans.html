@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block title %}Выдачи{% endblock %}
+{% block content %}
+<h2>Выдачи <small>(всего {{ data.total }})</small></h2>
+<form method="get" class="card">
+  Статус:
+  <select name="status">
+    <option value="" {% if not status %}selected{% endif %}>все</option>
+    <option value="active" {% if status=='active' %}selected{% endif %}>на руках</option>
+    <option value="overdue" {% if status=='overdue' %}selected{% endif %}>просрочены</option>
+    <option value="returned" {% if status=='returned' %}selected{% endif %}>возвращены</option>
+  </select>
+  Читатель №: <input name="reader_id" value="{{ reader_id }}" size="6">
+  <button>Показать</button>
+</form>
+<table>
+<tr><th>№</th><th>Читатель</th><th>Книга</th><th>Экз.</th><th>Выдана</th><th>Срок</th><th>Возврат</th><th>Просрочка, дн.</th><th>Штраф, ₽</th></tr>
+{% for l in data["items"] %}
+<tr class="{{ l.status }}">
+  <td><a href="/loans/{{ l.id }}">{{ l.id }}</a></td>
+  <td><a href="/readers/{{ l.reader.id }}">{{ l.reader.full_name }}</a></td>
+  <td>{{ l.book.title }} — {{ l.book.author }}</td>
+  <td>{{ l["copy"].inv_no }}</td>
+  <td>{{ l.issued_at }}</td><td>{{ l.due_at }}</td><td>{{ l.returned_at or "—" }}</td>
+  <td>{{ l.overdue_days }}</td><td>{{ l.fine }}</td>
+</tr>
+{% endfor %}
+</table>
+<p class="pager">Страница {{ data.page }} из {{ pages }}:
+{% if data.page > 1 %}<a href="?page={{ data.page-1 }}&status={{ status }}&reader_id={{ reader_id }}">← назад</a>{% endif %}
+{% if data.page < pages %}<a href="?page={{ data.page+1 }}&status={{ status }}&reader_id={{ reader_id }}">вперёд →</a>{% endif %}
+</p>
+{% endblock %}

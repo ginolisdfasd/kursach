@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Выдача {{ loan.id }}{% endblock %}
+{% block content %}
+<h2>Выдача № {{ loan.id }} <span class="{{ loan.status }}">({{ {'active':'на руках','overdue':'просрочена','returned':'возвращена'}[loan.status] }})</span></h2>
+<div class="card">
+  <p><b>Читатель:</b> <a href="/readers/{{ loan.reader.id }}">{{ loan.reader.full_name }}</a>, билет {{ loan.reader.card_no }}</p>
+  <p><b>Книга:</b> {{ loan.book.title }} — {{ loan.book.author }}</p>
+  <p><b>Экземпляр:</b> {{ loan["copy"].inv_no }} (№ {{ loan["copy"].id }})</p>
+  <p><b>Выдана:</b> {{ loan.issued_at }} · <b>срок:</b> {{ loan.due_at }} · <b>возврат:</b> {{ loan.returned_at or "—" }}</p>
+  <p><b>Просрочка:</b> {{ loan.overdue_days }} дн. · <b>штраф:</b> {{ loan.fine }} ₽</p>
+  {% if not loan.returned_at %}
+  <form method="post" action="/loans/{{ loan.id }}/return"><button>Принять возврат</button></form>
+  {% endif %}
+</div>
+<h3>История экземпляра</h3>
+<table><tr><th>Выдача</th><th>Читатель №</th><th>Выдана</th><th>Возврат</th></tr>
+{% for h in loan.copy_history %}
+<tr><td><a href="/loans/{{ h.id }}">{{ h.id }}</a></td><td><a href="/readers/{{ h.reader_id }}">{{ h.reader_id }}</a></td><td>{{ h.issued_at }}</td><td>{{ h.returned_at or "—" }}</td></tr>
+{% endfor %}</table>
+{% endblock %}

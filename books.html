@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Книги{% endblock %}
+{% block content %}
+<h2>Книги <small>(найдено {{ data.total }})</small></h2>
+<form class="card"><input name="q" value="{{ q }}" placeholder="название или автор"> <button>Найти</button></form>
+<table><tr><th>№</th><th>Название</th><th>Автор</th><th>Год</th><th>Экземпляров</th><th>Свободно</th></tr>
+{% for b in data["items"] %}
+<tr><td>{{ b.id }}</td><td>{{ b.title }}</td><td>{{ b.author }}</td><td>{{ b.year }}</td><td>{{ b.copies }}</td><td>{{ b.free }}</td></tr>
+{% endfor %}</table>
+<p class="pager">Страница {{ data.page }} из {{ pages }}:
+{% if data.page > 1 %}<a href="?page={{ data.page-1 }}&q={{ q }}">← назад</a>{% endif %}
+{% if data.page < pages %}<a href="?page={{ data.page+1 }}&q={{ q }}">вперёд →</a>{% endif %}</p>
+{% endblock %}
